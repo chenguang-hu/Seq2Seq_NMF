@@ -152,10 +152,13 @@ def translate(data_iter, net):
 
 test_iter = get_batch_data_flatten(hp.source_test, hp.target_test, batch_size=128, maxlen=hp.maxlen, tgt_maxlen=25)
 
+# calculate the perplexity on the test set
 ppl = translate(test_iter, net)
 
 print(f'ppl(test): {round(ppl, 4)}')
 
+
+# calcualte the ratios of distinct unigrams and bigrams in the generated responses
 distinct_1, distinct_2 = eval_distinct("result/pred.txt")
 
 print(f'distinct_1: {distinct_1}')
